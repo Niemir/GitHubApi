@@ -10,13 +10,14 @@ const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       refetchOnWindowFocus: false,
+      // staleTime: 1000 * 30,
     },
   },
 });
 
 const AppProvider: FC<AppProviderProps> = ({ children }) => {
   return (
-    <QueryClientProvider client={queryClient}>
+    <QueryClientProvider client={queryClient} contextSharing={true}>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         {children}

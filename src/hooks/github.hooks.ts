@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import { githubAxios } from "../common/axios";
 
-export const useGetAllUsers = (currentName: string) => {
+export const useGetAllUsers = (currentName?: string) => {
   return useQuery(
     ["allGithubUsers", currentName],
     async () => {
@@ -19,7 +19,7 @@ export const useGetAllUsers = (currentName: string) => {
     }
   );
 };
-export const useGetAllRepos = (currentName: string) => {
+export const useGetAllRepos = (currentName?: string) => {
   return useQuery(
     ["allGithubRepos", currentName],
     async () => {
