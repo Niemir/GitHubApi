@@ -1,5 +1,4 @@
 import React, { FC } from "react";
-import styled from "styled-components";
 import { ReactComponent as RepoIcon } from "../../assets/images/repo-icon.svg";
 import { ReactComponent as Star } from "../../assets/images/star.svg";
 import dayjs from "dayjs";

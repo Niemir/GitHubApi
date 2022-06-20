@@ -63,7 +63,7 @@ export const StyledInfo = styled.div`
     margin-right: 3px;
   }
 `;
-export const StyledDot = styled.div`
+export const StyledDot = styled.div<StyledDotProps>`
   width: 12px;
   height: 12px;
   border-radius: 50%;

@@ -25,7 +25,7 @@ const Search = () => {
 
   useEffect(() => {
     setSearch(debouncedValue);
-  }, [debouncedValue]);
+  }, [debouncedValue, setSearch]);
 
   return (
     <div>

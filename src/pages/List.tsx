@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import { useQuery } from "react-query";
 import styled from "styled-components";
 import { useGetAllRepos, useGetAllUsers } from "../hooks/github.hooks";
 import ListElement from "../components/ListElement/ListElement";
