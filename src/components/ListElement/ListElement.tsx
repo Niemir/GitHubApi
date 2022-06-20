@@ -20,9 +20,11 @@ import {
   RepoSearchResultItem,
   UserSearchResultItem,
 } from "../../models/githubApi";
+import { Link } from "react-router-dom";
 
 interface ListElementProps {
   data: any;
+  type: "user" | "repo";
 }
 
 dayjs.extend(relativeTime as any);
@@ -30,7 +32,11 @@ dayjs.extend(relativeTime as any);
 const UserContent = ({ data }: { data: UserSearchResultItem }) => {
   return (
     <>
-      <StyledTitle>{data.name ? data.name : data.login}</StyledTitle>
+      <StyledTitle>
+        <Link to={`/user/${data.login}`}>
+          {data.name ? data.name : data.login}
+        </Link>
+      </StyledTitle>
       <StyledDescription>{data.login}</StyledDescription>
       <StyledBio>
         {/* //TODO check why there are missing properties in the user object */}
@@ -68,15 +74,18 @@ const RepoContent = ({ data }: { data: RepoSearchResultItem }) => {
   );
 };
 
-const ListElement: FC<ListElementProps> = ({ data }) => {
+const ListElement: FC<ListElementProps> = ({ data, type }) => {
   return (
     <StyledElement>
       <StyledIcon>
         {data.avatar_url ? <img src={data.avatar_url} alt="" /> : <RepoIcon />}
       </StyledIcon>
       <Content>
-        {/* <UserContent data={data} /> */}
-        <RepoContent data={data} />
+        {type === "user" ? (
+          <UserContent data={data} />
+        ) : (
+          <RepoContent data={data} />
+        )}
       </Content>
     </StyledElement>
   );
