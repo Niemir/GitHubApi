@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { Route, Routes } from "react-router-dom";
 
 import Header from "./components/Header";
-// import List from "./components/List/List";
 import User from "./pages/User";
 import List from "./pages/List";
 const Wrapper = styled.section``;
