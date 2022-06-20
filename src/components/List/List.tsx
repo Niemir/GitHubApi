@@ -21,7 +21,16 @@ const List = () => {
     <Wrapper>
       <Container>
         <ul>
-          {allUsers && allUsers.map((user: any) => <ListElement user={user} />)}
+          {allRepos &&
+            allRepos.map((user: any) => (
+              <ListElement key={user.id} data={user} />
+            ))}
+        </ul>
+        <ul>
+          {allUsers &&
+            allUsers.map((user: any) => (
+              <ListElement key={user.id} data={user} />
+            ))}
         </ul>
       </Container>
     </Wrapper>
