@@ -12,8 +12,7 @@ export const useGetAllUsers = (currentName?: string) => {
 
       console.log("all users ", response.data.items);
 
-      const templeGameResultsResponse: UsersResponseModel = response.data;
-      return templeGameResultsResponse.items;
+      return response.data as UsersResponseModel;
     },
     {
       enabled: !Boolean(currentName),
@@ -28,10 +27,8 @@ export const useGetAllRepos = (currentName?: string) => {
       const response = await githubAxios.get(
         "/search/repositories?q=stars:%3E1&sort=stars&per_page=5"
       );
-      console.log("all repos ", response.data.items);
-
-      const templeGameResultsResponse: ReposResponseModel = response.data;
-      return templeGameResultsResponse.items;
+      console.log("all repos ", response.data);
+      return response.data as ReposResponseModel;
     },
     {
       enabled: !Boolean(currentName),
@@ -44,10 +41,7 @@ export const useGetUserByName = (currentName: string) => {
     ["githubUser", currentName],
     async () => {
       const response = await githubAxios.get(`/search/users?q=${currentName}`);
-      const templeGameResultsResponse: UsersResponseModel = response.data;
-      console.log("by name  users ", response.data.items);
-
-      return templeGameResultsResponse.items;
+      return response.data as UsersResponseModel;
     },
     {
       enabled: Boolean(currentName),
@@ -62,10 +56,8 @@ export const useGetReposByName = (currentName: string) => {
       const response = await githubAxios.get(
         `/search/repositories?q=${currentName}`
       );
-      const templeGameResultsResponse: ReposResponseModel = response.data;
-      console.log("by name repos ", response.data.items);
 
-      return templeGameResultsResponse.items;
+      return response.data as ReposResponseModel;
     },
     {
       enabled: Boolean(currentName),
