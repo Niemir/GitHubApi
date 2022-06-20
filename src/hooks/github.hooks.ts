@@ -1,6 +1,10 @@
 import { useQuery } from "react-query";
 import { githubAxios } from "../common/axios";
-import { ReposResponseModel, UsersResponseModel } from "../models/githubApi";
+import {
+  ReposResponseModel,
+  UserSearchResultItem,
+  UsersResponseModel,
+} from "../models/githubApi";
 
 export const useGetAllUsers = (currentName?: string) => {
   return useQuery(
@@ -58,6 +62,19 @@ export const useGetReposByName = (currentName: string) => {
       );
 
       return response.data as ReposResponseModel;
+    },
+    {
+      enabled: Boolean(currentName),
+    }
+  );
+};
+
+export const useGetSingleUser = (currentName: string) => {
+  return useQuery(
+    ["githubSingleUser", currentName],
+    async () => {
+      const response = await githubAxios.get(`/users/${currentName}`);
+      return response.data as UserSearchResultItem;
     },
     {
       enabled: Boolean(currentName),

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Logo from "../assets/images/logo.png";
 import Search from "./Search";
@@ -13,10 +14,13 @@ const StyledHeader = styled.header`
     padding: 17.5px 15px 17.5px 20px;
   }
 `;
+
 const Header = () => {
   return (
     <StyledHeader>
-      <img src={Logo} alt="" />
+      <Link to="/">
+        <img src={Logo} alt="" />
+      </Link>
       <Search />
     </StyledHeader>
   );
