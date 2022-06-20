@@ -58,7 +58,6 @@ const User = () => {
     return <div>User not found</div>;
   }
 
-  console.log(user);
   return (
     <Wrapper>
       <StyledImage>

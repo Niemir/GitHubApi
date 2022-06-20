@@ -28,13 +28,16 @@ const List = () => {
   if (usersLoading || reposLoading) {
     return <div>Loading...</div>;
   }
-  if (!usersResponse || !reposResponse) {
-    return <div>Error</div>;
+
+  if (!usersResponse || !reposResponse || usersError || reposError) {
+    return <div>Error with fetching data</div>;
   }
+
   const modifedUsers = usersResponse.items.map((user) => ({
     ...user,
     type: "user",
   }));
+
   const modifedRepos = reposResponse.items.map((repo) => ({
     ...repo,
     type: "repo",
@@ -43,7 +46,6 @@ const List = () => {
   const sortedData = [...modifedUsers, ...modifedRepos].sort(
     (a, b) => a.id - b.id
   );
-  console.log("sortedData ", sortedData);
 
   const getTotalResultsNumber = () =>
     (usersResponse.total_count + reposResponse.total_count).toLocaleString(

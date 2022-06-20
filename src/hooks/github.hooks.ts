@@ -14,9 +14,6 @@ export const useGetAllUsers = (currentName?: string) => {
     const response = await githubAxios.get(
       `/search/users?${currentName ? usersByName : popularUsers}&per_page=4`
     );
-
-    console.log("all users ", response.data.items);
-
     return response.data as UsersResponseModel;
   });
 };
@@ -30,7 +27,6 @@ export const useGetAllRepos = (currentName?: string) => {
         currentName ? reposByName : popularRepos
       }&per_page=5`
     );
-    console.log("all repos ", response.data);
     return response.data as ReposResponseModel;
   });
 };
