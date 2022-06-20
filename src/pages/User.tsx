@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { StyledInfo } from "../components/ListElement/ListElement.styles";
-import { useGetSingleUser, useGetUserByName } from "../hooks/github.hooks";
+import { useGetSingleUser } from "../hooks/github.hooks";
 import { ReactComponent as FollowersIcon } from "../assets/images/followers.svg";
 import { ReactComponent as StarIcon } from "../assets/images/star.svg";
 
@@ -58,6 +58,7 @@ const User = () => {
     return <div>User not found</div>;
   }
 
+  console.log(user);
   return (
     <Wrapper>
       <StyledImage>
@@ -67,18 +68,18 @@ const User = () => {
       {user?.login && <StyledLogin>{user.login}</StyledLogin>}
 
       <StyledDetails>
-        {user?.followers && (
+        {user?.followers ? (
           <div>
             <FollowersIcon />
             {user.followers}
           </div>
-        )}
-        {user?.following && <div>{user.following} Following</div>}
-        {user?.followers && (
+        ) : null}
+        {user?.following ? <div>{user.following} Following</div> : null}
+        {user?.followers ? (
           <div>
             <StarIcon />-{/* TODO add stars count */}
           </div>
-        )}
+        ) : null}
       </StyledDetails>
     </Wrapper>
   );

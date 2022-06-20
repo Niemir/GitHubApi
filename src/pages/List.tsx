@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useQuery } from "react-query";
 import styled from "styled-components";
 import { useGetAllRepos, useGetAllUsers } from "../hooks/github.hooks";
 import ListElement from "../components/ListElement/ListElement";
+import { SearchContext } from "../context/appContext";
 
 const StyledCounter = styled.span`
   display: block;
@@ -11,16 +12,18 @@ const StyledCounter = styled.span`
 `;
 
 const List = () => {
+  const { search } = useContext(SearchContext);
+
   const {
     data: usersResponse,
     isLoading: usersLoading,
     isError: usersError,
-  } = useGetAllUsers();
+  } = useGetAllUsers(search);
   const {
     data: reposResponse,
     isLoading: reposLoading,
     isError: reposError,
-  } = useGetAllRepos();
+  } = useGetAllRepos(search);
 
   if (usersLoading || reposLoading) {
     return <div>Loading...</div>;

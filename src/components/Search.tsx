@@ -1,11 +1,6 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
-import {
-  useGetAllRepos,
-  useGetAllUsers,
-  useGetReposByName,
-  useGetUserByName,
-} from "../hooks/github.hooks";
+import { SearchContext } from "../context/appContext";
 import useDebounce from "../hooks/useDebounce";
 
 const StyledInput = styled.input`
@@ -26,10 +21,11 @@ const StyledInput = styled.input`
 const Search = () => {
   const [name, setName] = useState("");
   const debouncedValue = useDebounce<string>(name, 500);
-  const { data: allUsers } = useGetAllUsers();
-  const { data: allRepos } = useGetAllRepos();
-  const { data: users } = useGetUserByName(debouncedValue);
-  const { data: repos } = useGetReposByName(debouncedValue);
+  const { setSearch } = useContext(SearchContext);
+
+  useEffect(() => {
+    setSearch(debouncedValue);
+  }, [debouncedValue]);
 
   return (
     <div>

@@ -4,6 +4,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyle } from "../assets/styles/globalStyle";
 import { theme } from "../assets/styles/theme";
+import SearchProvider from "../context/appContext";
 interface AppProviderProps {
   children: ReactNode;
 }
@@ -20,10 +21,12 @@ const AppProvider: FC<AppProviderProps> = ({ children }) => {
   return (
     <Router>
       <QueryClientProvider client={queryClient} contextSharing={true}>
-        <ThemeProvider theme={theme}>
-          <GlobalStyle />
-          {children}
-        </ThemeProvider>
+        <SearchProvider>
+          <ThemeProvider theme={theme}>
+            <GlobalStyle />
+            {children}
+          </ThemeProvider>
+        </SearchProvider>
       </QueryClientProvider>
     </Router>
   );
