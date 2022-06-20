@@ -16,4 +16,9 @@ export const theme = {
     s: "14px",
     xs: "12px",
   },
+  breakpoints: {
+    md: "768px",
+    lg: "1024px",
+    xl: "1280px",
+  },
 };

@@ -9,6 +9,9 @@ const StyledHeader = styled.header`
   align-items: center;
   background-color: ${(props) => props.theme.colors.primary};
   padding: 10.5px 15px 10.5px 20px;
+  @media (min-width: ${(props) => props.theme.breakpoints.md}) {
+    padding: 17.5px 15px 17.5px 20px;
+  }
 `;
 const Header = () => {
   return (
