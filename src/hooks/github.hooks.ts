@@ -1,5 +1,6 @@
 import { useQuery } from "react-query";
 import { githubAxios } from "../common/axios";
+import { ReposResponseModel, UsersResponseModel } from "../models/githubApi";
 
 export const useGetAllUsers = (currentName?: string) => {
   return useQuery(
@@ -11,7 +12,7 @@ export const useGetAllUsers = (currentName?: string) => {
 
       console.log("all users ", response.data.items);
 
-      const templeGameResultsResponse = response.data;
+      const templeGameResultsResponse: UsersResponseModel = response.data;
       return templeGameResultsResponse.items;
     },
     {
@@ -29,7 +30,7 @@ export const useGetAllRepos = (currentName?: string) => {
       );
       console.log("all repos ", response.data.items);
 
-      const templeGameResultsResponse = response.data;
+      const templeGameResultsResponse: ReposResponseModel = response.data;
       return templeGameResultsResponse.items;
     },
     {
@@ -43,7 +44,7 @@ export const useGetUserByName = (currentName: string) => {
     ["githubUser", currentName],
     async () => {
       const response = await githubAxios.get(`/search/users?q=${currentName}`);
-      const templeGameResultsResponse = response.data;
+      const templeGameResultsResponse: UsersResponseModel = response.data;
       console.log("by name  users ", response.data.items);
 
       return templeGameResultsResponse.items;
@@ -61,7 +62,7 @@ export const useGetReposByName = (currentName: string) => {
       const response = await githubAxios.get(
         `/search/repositories?q=${currentName}`
       );
-      const templeGameResultsResponse = response.data;
+      const templeGameResultsResponse: ReposResponseModel = response.data;
       console.log("by name repos ", response.data.items);
 
       return templeGameResultsResponse.items;
